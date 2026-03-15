@@ -116,7 +116,6 @@
     text-transform: uppercase;
     text-decoration: none;
     transition: background 0.3s, color 0.3s;
-    cursor: none;
   }
   .nav-cta:hover { background: var(--gold); color: var(--black); }
 
@@ -232,7 +231,6 @@
     text-decoration: none;
     display: inline-block;
     transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
-    cursor: none;
     position: relative;
     overflow: hidden;
   }
@@ -257,7 +255,6 @@
     text-decoration: none;
     display: inline-block;
     transition: border-color 0.3s, color 0.3s;
-    cursor: none;
   }
   .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
 
@@ -601,7 +598,6 @@
     text-transform: uppercase;
     text-decoration: none;
     transition: all 0.3s;
-    cursor: none;
   }
   .plan-cta-outline {
     border: 1px solid var(--border);
@@ -878,7 +874,6 @@
     letter-spacing: 0.14em;
     text-transform: uppercase;
     font-weight: 500;
-    cursor: none;
     transition: background 0.3s, box-shadow 0.3s;
     position: relative;
     overflow: hidden;
@@ -979,8 +974,6 @@
 <body>
 
 <!-- CUSTOM CURSOR -->
-<div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursorRing"></div>
 
 <!-- NAV -->
 <nav id="mainNav">
@@ -1500,23 +1493,6 @@
 </footer>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  // CURSOR
-  const cursor = document.getElementById('cursor');
-  const ring = document.getElementById('cursorRing');
-  let mx = 0, my = 0, rx = 0, ry = 0;
-  document.addEventListener('mousemove', e => {
-    mx = e.clientX; my = e.clientY;
-    cursor.style.left = mx + 'px';
-    cursor.style.top = my + 'px';
-  });
-  function animateRing() {
-    rx += (mx - rx) * 0.12;
-    ry += (my - ry) * 0.12;
-    ring.style.left = rx + 'px';
-    ring.style.top = ry + 'px';
-    requestAnimationFrame(animateRing);
-  }
-  animateRing();
   document.querySelectorAll('a, button, .service-card, .pricing-card, .why-point').forEach(el => {
     el.addEventListener('mouseenter', () => {
       cursor.style.width = '20px'; cursor.style.height = '20px';
