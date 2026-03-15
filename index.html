@@ -20,7 +20,7 @@
     --white: #EEF6FF;
   }
 
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; cursor: none !important; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   html { scroll-behavior: smooth; }
 
@@ -33,33 +33,7 @@
 
   }
 
-  /* CUSTOM CURSOR */
-  .cursor {
-    width: 12px; height: 12px;
-    background: var(--gold);
-    border-radius: 50%;
-    position: fixed;
-    top: -100px; left: -100px;
-    pointer-events: none;
-    z-index: 9999;
-    transform: translate(-50%,-50%);
-    transition: width 0.2s, height 0.2s, background 0.2s, opacity 0.3s;
-    opacity: 0;
-  }
-  .cursor.active { opacity: 1; }
-  .cursor-ring {
-    width: 38px; height: 38px;
-    border: 1.5px solid rgba(77,166,255,0.6);
-    border-radius: 50%;
-    position: fixed;
-    top: -100px; left: -100px;
-    pointer-events: none;
-    z-index: 9998;
-    transform: translate(-50%,-50%);
-    transition: width 0.25s, height 0.25s, opacity 0.3s;
-    opacity: 0;
-  }
-  .cursor-ring.active { opacity: 1; }
+  
 
   /* NOISE OVERLAY */
   body::before {
@@ -982,8 +956,6 @@
 <body>
 
 <!-- CUSTOM CURSOR -->
-<div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursorRing"></div>
 
 <!-- NAV -->
 <nav id="mainNav">
@@ -1422,7 +1394,7 @@
           </div>
           <div>
             <div class="contact-item-label">Location</div>
-            <span class="contact-item-val" style="cursor:default">Boston, Massachusetts</span>
+            <span class="contact-item-val" >Boston, Massachusetts</span>
           </div>
         </div>
       </div>
@@ -1502,46 +1474,6 @@
 </footer>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  // CURSOR
-  const cursor = document.getElementById('cursor');
-  const ring = document.getElementById('cursorRing');
-  let mx = 0, my = 0, rx = 0, ry = 0;
-
-  document.addEventListener('mousemove', e => {
-    mx = e.clientX; my = e.clientY;
-    cursor.classList.add('active');
-    ring.classList.add('active');
-    cursor.style.left = mx + 'px';
-    cursor.style.top = my + 'px';
-  });
-
-  document.addEventListener('mouseleave', () => {
-    cursor.classList.remove('active');
-    ring.classList.remove('active');
-  });
-
-  function animateRing() {
-    rx += (mx - rx) * 0.12;
-    ry += (my - ry) * 0.12;
-    ring.style.left = rx + 'px';
-    ring.style.top = ry + 'px';
-    requestAnimationFrame(animateRing);
-  }
-  animateRing();
-
-  document.querySelectorAll('a, button, .service-card, .pricing-card, .why-point').forEach(el => {
-    el.addEventListener('mouseenter', () => {
-      cursor.style.width = '22px'; cursor.style.height = '22px';
-      cursor.style.background = 'rgba(77,166,255,0.5)';
-      ring.style.width = '56px'; ring.style.height = '56px';
-    });
-    el.addEventListener('mouseleave', () => {
-      cursor.style.width = '12px'; cursor.style.height = '12px';
-      cursor.style.background = 'var(--gold)';
-      ring.style.width = '38px'; ring.style.height = '38px';
-    });
-  });
-
   // NAV SCROLL
   const nav = document.getElementById('mainNav');
   window.addEventListener('scroll', () => {
